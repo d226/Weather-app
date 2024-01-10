@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head') %>
+
+    <body>
+        <div class="container">
+
+            <div class="weather__header">
+
+                <form class="weather__search" action="/weather" method="get">
+                    <input type="text" placeholder="Search for a city..." class="weather__searchform" id="city"
+                        name="city" required>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </form>
+                <i id="locationIcon" class="fa-solid fa-location-dot"></i>
+                <div class="weather__units">
+                    <span class="weather_unit_celsius">&#176C</span>
+                    <span class="weather_unit_farenheit">&#176F</span>
+                </div>
+            </div>
+            <% if (weatherData) { %>
+                <div class="weather__body">
+                    <h1 class="weather__city">
+                        <%= weatherData.city%>
+                    </h1>
+                    <div class="weather__datetime">
+                        <%= weatherData.dateAndTime %>
+                    </div>
+                    <div class="weather__forecast">
+                        <%= weatherData.forecast %>
+                    </div>
+                    <div class="weather__icon">
+                        <img src="<%=weatherData.icon %>">
+
+                    </div>
+                    <p class="weather__temperature">
+                        <%= weatherData.temp %>&#176
+                    </p>
+                    <div class="weather__minmax">
+                        <p>Min: 12&#176</p>
+                        <p>Max: 16&#176</p>
+                    </div>
+                </div>
+                <div class="weather__info">
+                    <div class="weather__card">
+                        <i class="fa-solid fa-temperature-full"></i>
+                        <div>
+                            <p>Real Feel</p>
+                            <p class="weather__realfeel">
+                                <%= weatherData.realFeel %>&#176
+                            </p>
+                        </div>
+                    </div>
+                    <div class="weather__card">
+                        <i class="fa-solid fa-droplet"></i>
+                        <div>
+                            <p>Humidity</p>
+                            <%= weatherData.humidity %>&#176
+                        </div>
+                    </div>
+                    <div class="weather__card">
+                        <i class="fa-solid fa-wind"></i>
+                        <div>
+                            <p>Wind</p>
+                            <p class="weather__wind">
+                                <%= weatherData.wind %>mph
+                            </p>
+                        </div>
+                    </div>
+                    <div class="weather__card">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        <div>
+                            <p>Pressure</p>
+                            <p class="weather__pressure">
+                                <%= weatherData.pressure %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <% } %>
+
+        </div>
+        </div>
+        <script src="https://kit.fontawesome.com/a692e1c39f.js" crossorigin="anonymous"></script>
+        <%- include('partials/footer') %>
+
+    </body>
+
+</html>

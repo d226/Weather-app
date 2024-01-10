@@ -1,0 +1,34 @@
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        if ("geolocation" in navigator) {
+
+            const locationIcon = document.getElementById('locationIcon');
+            const weatherSearchForm = document.querySelector('.weather__searchform');
+
+            locationIcon.addEventListener('click', () => {
+
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+
+                        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                        weatherSearchForm.value = `${latitude},${longitude}`;
+                        weatherSearchForm.style.visibility = "hidden"
+
+                        // Trigger the form submission
+                        weatherSearchForm.form.submit();
+                    },
+                    (error) => {
+                        console.error(`Error getting location: ${error.message}`);
+                    }
+                );
+            });
+        } else {
+            console.error("Geolocation is not supported by your browser");
+        }
+    });
+</script>
